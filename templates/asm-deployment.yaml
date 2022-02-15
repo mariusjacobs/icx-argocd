@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "icx.fullname" . }}
+  name: {{ template "icx.fullname" . }}-asm
   labels:
     app: {{ template "icx.name" . }}
     chart: {{ template "icx.chart" . }}
