@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "icx.fullname" . }}-asm
+  name: {{ template "icx.fullname" . }}-psm
   labels:
     app: {{ template "icx.name" . }}
     chart: {{ template "icx.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  type: {{ .Values.service.asm.type }}
+  type: {{ .Values.service.psm.type }}
   ports:
-    - port: {{ .Values.service.asm.port }}
+    - port: {{ .Values.service.psm.port }}
       targetPort: http
       protocol: TCP
       name: http

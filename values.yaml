@@ -10,9 +10,13 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  # type: ClusterIP
-  type: LoadBalancer
-  port: 80
+  asm:
+    # type: ClusterIP
+    type: LoadBalancer
+    port: 8081
+  psm:
+    type: LoadBalancer
+    port: 8082
 
 ingress:
   enabled: false
