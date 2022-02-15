@@ -22,7 +22,6 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          # image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           image: "nanajanashia/argocd-app:1.2"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
