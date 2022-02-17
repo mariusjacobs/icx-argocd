@@ -16,4 +16,5 @@ spec:
       name: http
   selector:
     app: {{ template "icx.name" . }}
+    module: asm
     release: {{ .Release.Name }}

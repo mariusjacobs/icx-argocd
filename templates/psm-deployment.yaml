@@ -4,6 +4,7 @@ metadata:
   name: {{ template "icx.fullname" . }}-psm
   labels:
     app: {{ template "icx.name" . }}
+    module: psm
     chart: {{ template "icx.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -13,6 +14,7 @@ spec:
   selector:
     matchLabels:
       app: {{ template "icx.name" . }}
+      module: psm
       release: {{ .Release.Name }}
   template:
     metadata:
