@@ -30,3 +30,28 @@ Create chart name and version as used by the chart label.
 {{- define "icx.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Generic icx service.
+*/}}
+{{- define "icx.service" -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "icx.fullname" . }}-asm
+  labels:
+    app: {{ template "icx.name" . }}
+    chart: {{ template "icx.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.asm.type }}
+  ports:
+    - port: {{ .Values.service.asm.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "icx.name" . }}
+    release: {{ .Release.Name }}
+{{- end -}}
