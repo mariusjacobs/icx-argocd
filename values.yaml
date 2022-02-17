@@ -13,7 +13,7 @@ service:
   asm:
     # type: ClusterIP
     type: LoadBalancer
-    port: 8081
+    port: 8088
   psm:
     type: LoadBalancer
     port: 8082
