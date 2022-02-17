@@ -20,6 +20,7 @@ spec:
     metadata:
       labels:
         app: {{ template "icx.name" . }}
+        module: asm
         release: {{ .Release.Name }}
     spec:
       containers:
