@@ -1,2 +1,7 @@
 service:
-  type: LoadBalancer
+  asm:
+    type: LoadBalancer
+    port: 9091
+  psm:
+    type: LoadBalancer
+    port: 9092

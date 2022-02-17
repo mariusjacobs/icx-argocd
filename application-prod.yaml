@@ -13,9 +13,10 @@ spec:
     helm:
       valueFiles:
         - values.yaml
+        - values-production.yaml
   destination: 
     server: https://kubernetes.default.svc
-    namespace: icx
+    namespace: icx-prod
 
   syncPolicy:
     syncOptions:
