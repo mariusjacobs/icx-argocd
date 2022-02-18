@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          # image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          # image: "{{ .Values.psm.image.repository }}:{{ .Values.psm.image.tag }}"
           image: "{{ .Values.psm.image.repository }}:{{ default .Chart.AppVersion .Values.psm.image.tag }}"
           imagePullPolicy: {{ .Values.psm.image.pullPolicy }}
           ports:
