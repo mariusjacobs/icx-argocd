@@ -2,13 +2,13 @@ asm:
   replicaCount: 4
   service: 
     type: LoadBalancer
-    port: 9091
+    port: 80
 
 psm:
   replicaCount: 2
   service: 
     type: LoadBalancer
-    port: 9092
+    port: 80
 
 bsm:
   replicaCount: 2
