@@ -9,7 +9,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.psm.replicaCount }}
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -26,8 +26,8 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           # image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.psm.image.repository }}:{{ default .Chart.AppVersion .Values.psm.image.tag }}"
+          imagePullPolicy: {{ .Values.psm.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 80

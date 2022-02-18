@@ -8,9 +8,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  type: {{ .Values.service.psm.type }}
+  type: {{ .Values.psm.service.type }}
   ports:
-    - port: {{ .Values.service.psm.port }}
+    - port: {{ .Values.psm.service.port }}
       targetPort: http
       protocol: TCP
       name: http

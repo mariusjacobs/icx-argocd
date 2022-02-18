@@ -1,7 +1,11 @@
-service:
-  asm:
+asm:
+  replicaCount: 4
+  service: 
     type: LoadBalancer
     port: 9091
-  psm:
+
+psm:
+  replicaCount: 2
+  service: 
     type: LoadBalancer
     port: 9092

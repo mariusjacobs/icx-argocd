@@ -9,7 +9,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.asm.replicaCount }}
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -25,8 +25,8 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.asm.image.repository }}:{{ default .Chart.AppVersion .Values.asm.image.tag }}"
+          imagePullPolicy: {{ .Values.asm.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 80
