@@ -11,7 +11,7 @@ psm:
     port: 9092
 
 bsm:
-  replicaCount: 2
+  replicaCount: 0
 
 ism:
-  replicaCount: 2
+  replicaCount: 0
