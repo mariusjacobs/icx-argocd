@@ -25,20 +25,20 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          # image: "{{ .Values.bsm.image.repository }}:{{ default .Chart.AppVersion .Values.bsm.image.tag }}"
-          image: "{{ .Values.bsm.image.repository }}"
-          args:
-          - /bin/sh
-          - -c
-          - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
+          image: "{{ .Values.bsm.image.repository }}:{{ default .Chart.AppVersion .Values.bsm.image.tag }}"
           imagePullPolicy: {{ .Values.bsm.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
           livenessProbe:
-            exec:
-              command:
-              - cat
-              - /tmp/healthy
-            initialDelaySeconds: 3
-            periodSeconds: 5
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
