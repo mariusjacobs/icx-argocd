@@ -23,7 +23,7 @@ psm:
     port: 8082
 
 bsm:
-  replicaCount: 0
+  replicaCount: 1
   image: 
     repository: gcr.io/heptio-images/ks-guestbook-demo
     # tag: 0.2

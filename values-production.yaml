@@ -9,3 +9,9 @@ psm:
   service: 
     type: LoadBalancer
     port: 9092
+
+bsm:
+  replicaCount: 2
+
+ism:
+  replicaCount: 2
