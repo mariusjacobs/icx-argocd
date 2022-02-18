@@ -25,7 +25,7 @@ psm:
 bsm:
   replicaCount: 1
   image: 
-    repository: gcr.io/heptio-images/ks-guestbook-demo
+    repository: k8s.gcr.io/busybox
     # tag: 0.2
     pullPolicy: IfNotPresent
 
