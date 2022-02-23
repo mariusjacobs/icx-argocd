@@ -6,7 +6,7 @@ asm:
   replicaCount: 1
   image: 
     repository: mcr.microsoft.com/windows/servercore/iis
-    tag: 20220208-windowsservercore-ltsc2022	
+    tag: 20220208-windowsservercore-ltsc2019
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
