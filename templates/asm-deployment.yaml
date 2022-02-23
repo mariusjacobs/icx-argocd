@@ -39,10 +39,8 @@ spec:
             httpGet:
               path: /
               port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            failureThreshold: 1
+            periodSeconds: 10
           startupProbe:
             httpGet:
               path: /
