@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 asm:
-  replicaCount: 50
+  replicaCount: 2
   image: 
     repository: mcr.microsoft.com/windows/servercore/iis
     tag: 20220208-windowsservercore-ltsc2019
