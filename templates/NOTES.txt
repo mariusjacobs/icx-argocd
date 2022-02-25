@@ -1,7 +1,7 @@
 1. Get the application URL by running these commands:
-{{- if .Values.ingress.enabled }}
-{{- range .Values.ingress.hosts }}
-  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
+{{- if .Values.asm.ingress.enabled }}
+{{- range .Values.asm.ingress.hosts }}
+  http{{ if $.Values.asm.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.asm.ingress.path }}
 {{- end }}
 {{- else if contains "NodePort" .Values.asm.service.type }}
   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "icx.fullname" . }})

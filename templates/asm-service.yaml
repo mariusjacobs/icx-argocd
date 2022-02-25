@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ template "icx.fullname" . }}-asm
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-target-node-labels: "kubernetes.io/os=windows,kubernetes.io/arch=amd64"
   labels:
     app: {{ template "icx.name" . }}
     chart: {{ template "icx.chart" . }}
