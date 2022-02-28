@@ -35,27 +35,29 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /asm/all/servicelocation.svc
-              port: http
-            failureThreshold: 2
-            initialDelaySeconds: 180
-            timeoutSeconds: 10
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /asm/all/servicelocation.svc
-              port: http
-            failureThreshold: 2
-            initialDelaySeconds: 180
-            timeoutSeconds: 10
-            periodSeconds: 10
+          # livenessProbe:
+          #   httpGet:
+          #     path: /asm/all/servicelocation.svc
+          #     port: http
+          #   failureThreshold: 2
+          #   initialDelaySeconds: 180
+          #   timeoutSeconds: 10
+          #   periodSeconds: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /asm/all/servicelocation.svc
+          #     port: http
+          #   failureThreshold: 2
+          #   initialDelaySeconds: 180
+          #   timeoutSeconds: 10
+          #   periodSeconds: 10
           startupProbe:
             httpGet:
               path: /asm/all/servicelocation.svc
               port: http
             failureThreshold: 30
+            successThreshold: 5
+            initialDelaySeconds: 5
             periodSeconds: 10
           resources:
 {{ toYaml .Values.asm.resources | indent 12 }}
