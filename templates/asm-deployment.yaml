@@ -43,14 +43,15 @@ spec:
           #   initialDelaySeconds: 180
           #   timeoutSeconds: 10
           #   periodSeconds: 10
-          # readinessProbe:
-          #   httpGet:
-          #     path: /asm/all/servicelocation.svc
-          #     port: http
-          #   failureThreshold: 2
-          #   initialDelaySeconds: 180
-          #   timeoutSeconds: 10
-          #   periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /asm/all/servicelocation.svc
+              port: http
+            failureThreshold: 10
+            successThreshold: 2
+            initialDelaySeconds: 5
+            timeoutSeconds: 10
+            periodSeconds: 10
           startupProbe:
             httpGet:
               path: /asm/all/servicelocation.svc
