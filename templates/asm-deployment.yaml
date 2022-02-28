@@ -35,26 +35,26 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /asm/all/graphql
-              port: http
-            failureThreshold: 2
-            timeoutSeconds: 5
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /asm/all/graphql
-              port: http
-            failureThreshold: 2
-            timeoutSeconds: 5
-            periodSeconds: 10
-          startupProbe:
-            httpGet:
-              path: /asm/all/graphql
-              port: http
-            failureThreshold: 30
-            periodSeconds: 10
+          # livenessProbe:
+          #   httpGet:
+          #     path: /asm/all/graphql
+          #     port: http
+          #   failureThreshold: 2
+          #   timeoutSeconds: 5
+          #   periodSeconds: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /asm/all/graphql
+          #     port: http
+          #   failureThreshold: 2
+          #   timeoutSeconds: 5
+          #   periodSeconds: 10
+          # startupProbe:
+          #   httpGet:
+          #     path: /asm/all/graphql
+          #     port: http
+          #   failureThreshold: 30
+          #   periodSeconds: 10
           resources:
 {{ toYaml .Values.asm.resources | indent 12 }}
     {{- with .Values.asm.nodeSelector }}
