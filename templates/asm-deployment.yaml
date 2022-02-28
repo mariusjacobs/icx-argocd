@@ -37,14 +37,14 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /asm/all/graphql
+              path: /asm/all/servicelocation.svc
               port: http
             failureThreshold: 2
             timeoutSeconds: 10
             periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: /asm/all/graphql
+              path: /asm/all/servicelocation.svc
               port: http
             failureThreshold: 2
             timeoutSeconds: 10
