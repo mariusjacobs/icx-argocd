@@ -56,7 +56,7 @@ spec:
               path: /asm/all/servicelocation.svc
               port: http
             failureThreshold: 30
-            successThreshold: 5
+            successThreshold: 1
             initialDelaySeconds: 5
             periodSeconds: 10
           resources:
