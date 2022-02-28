@@ -40,7 +40,7 @@ spec:
               path: /asm/all/servicelocation.svc
               port: http
             failureThreshold: 2
-            initialDelaySeconds: 120
+            initialDelaySeconds: 180
             timeoutSeconds: 10
             periodSeconds: 10
           readinessProbe:
@@ -48,7 +48,7 @@ spec:
               path: /asm/all/servicelocation.svc
               port: http
             failureThreshold: 2
-            initialDelaySeconds: 120
+            initialDelaySeconds: 180
             timeoutSeconds: 10
             periodSeconds: 10
           startupProbe:
@@ -56,8 +56,7 @@ spec:
               path: /asm/all/servicelocation.svc
               port: http
             failureThreshold: 30
-            timeoutSeconds: 120
-            periodSeconds: 30
+            periodSeconds: 10
           resources:
 {{ toYaml .Values.asm.resources | indent 12 }}
     {{- with .Values.asm.nodeSelector }}
