@@ -5,10 +5,10 @@
 asm:
   replicaCount: 1
   image: 
-    # repository: mcr.microsoft.com/windows/servercore/iis
-    # tag: 20220208-windowsservercore-ltsc2019
-    repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-asm
-    tag: 1.0.0
+    repository: mcr.microsoft.com/windows/servercore/iis
+    tag: 20220208-windowsservercore-ltsc2019
+    # repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-asm
+    # tag: 1.0.0
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
