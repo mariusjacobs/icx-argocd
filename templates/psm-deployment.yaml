@@ -31,22 +31,39 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /?liveness
-          #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /?readiness
-          #     port: http
-          # startupProbe:
-          #   httpGet:
-          #     path: /?startup
-          #     port: http
-          #   failureThreshold: 30
-          #   successThreshold: 1
-          #   initialDelaySeconds: 1
-          #   periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /asm/all/servicelocation.svc
+              port: http
+            failureThreshold: 2
+            initialDelaySeconds: 180
+            timeoutSeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - curl
+                - --fail
+                - -d
+                - "{ query: '{ global { dsns { name } cultures { items { name } } } }' }"
+                - -H 
+                - "Content-Type: application/json"
+                - -X POST
+                - http://localhost/asm/all/graphql/csr/api
+            failureThreshold: 30
+            successThreshold: 3
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+            periodSeconds: 5
+          startupProbe:
+            httpGet:
+              path: /asm/all/servicelocation.svc
+              port: http
+            failureThreshold: 30
+            successThreshold: 1
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+            periodSeconds: 10
           resources:
 {{ toYaml .Values.psm.resources | indent 12 }}
     {{- with .Values.psm.nodeSelector }}
