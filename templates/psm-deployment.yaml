@@ -25,7 +25,6 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          # image: "{{ .Values.psm.image.repository }}:{{ .Values.psm.image.tag }}"
           image: "{{ .Values.psm.image.repository }}:{{ default .Chart.AppVersion .Values.psm.image.tag }}"
           imagePullPolicy: {{ .Values.psm.image.pullPolicy }}
           ports:
@@ -33,13 +32,45 @@ spec:
               containerPort: 80
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+              command:
+                - curl
+                - --fail
+                - -d
+                - "{ query: '{ global { dsns { name } cultures { items { name } } } }' }"
+                - -H 
+                - "Content-Type: application/json"
+                - -X POST
+                - http://localhost/asm/all/graphql/csr/api
+            failureThreshold: 2
+            initialDelaySeconds: 180
+            timeoutSeconds: 10
+            periodSeconds: 10
           readinessProbe:
+            exec:
+              command:
+                - curl
+                - --fail
+                - -d
+                - "{ query: '{ global { dsns { name } cultures { items { name } } } }' }"
+                - -H 
+                - "Content-Type: application/json"
+                - -X POST
+                - http://localhost/asm/all/graphql/csr/api
+            failureThreshold: 30
+            successThreshold: 3
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+            periodSeconds: 5
+          startupProbe:
             httpGet:
-              path: /
+              path: /asm/all/servicelocation.svc
               port: http
+            failureThreshold: 30
+            successThreshold: 1
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+            periodSeconds: 10
           resources:
 {{ toYaml .Values.psm.resources | indent 12 }}
     {{- with .Values.psm.nodeSelector }}
