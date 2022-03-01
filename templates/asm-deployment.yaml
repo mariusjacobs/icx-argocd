@@ -49,18 +49,31 @@ spec:
               port: http
             failureThreshold: 20
             successThreshold: 3
-            initialDelaySeconds: 1
+            initialDelaySeconds: 60
             timeoutSeconds: 1
             periodSeconds: 5
+          # startupProbe:
+          #   httpGet:
+          #     path: /asm/all/servicelocation.svc
+          #     port: http
+          #   failureThreshold: 30
+          #   successThreshold: 1
+          #   initialDelaySeconds: 1
+          #   periodSeconds: 10
           startupProbe:
-            httpGet:
-              path: /asm/all/servicelocation.svc
-              port: http
+            exec:
+              command:
+                - curl
+                - --fail
+                - -d
+                - "{ query: '{ global { dsns { name } cultures { totalCount } } }' }"
+                - -H 
+                - "Content-Type: application/json"
+                - -X POST
+                - http://localhost/asm/all/graphql/csr/api
             failureThreshold: 30
-            successThreshold: 1
             initialDelaySeconds: 1
-            timeoutSeconds: 180
-            periodSeconds: 10
+            periodSeconds: 5
           resources:
 {{ toYaml .Values.asm.resources | indent 12 }}
     {{- with .Values.asm.nodeSelector }}
