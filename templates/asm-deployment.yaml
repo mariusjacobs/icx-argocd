@@ -47,9 +47,9 @@ spec:
             httpGet:
               path: /asm/all/servicelocation.svc
               port: http
-            failureThreshold: 20
+            failureThreshold: 30
             successThreshold: 3
-            initialDelaySeconds: 120
+            initialDelaySeconds: 10
             timeoutSeconds: 1
             periodSeconds: 5
           # readinessProbe:
