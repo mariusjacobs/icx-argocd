@@ -1,0 +1,17 @@
+asm:
+  replicaCount: 2
+  service: 
+    type: LoadBalancer
+    port: 80
+
+psm:
+  replicaCount: 2
+  service: 
+    type: LoadBalancer
+    port: 80
+
+bsm:
+  replicaCount: 2
+
+ism:
+  replicaCount: 2
