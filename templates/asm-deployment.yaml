@@ -70,7 +70,7 @@ spec:
                 - -H 
                 - "Content-Type: application/json"
                 - -X POST
-                - http://localhost/asm/all/graphql/csr/api
+                - http://localhost/asm/all/graphql/csr/apix
             failureThreshold: 30
             initialDelaySeconds: 1
             periodSeconds: 5
