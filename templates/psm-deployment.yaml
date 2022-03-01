@@ -25,29 +25,28 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          # image: "{{ .Values.psm.image.repository }}:{{ .Values.psm.image.tag }}"
           image: "{{ .Values.psm.image.repository }}:{{ default .Chart.AppVersion .Values.psm.image.tag }}"
           imagePullPolicy: {{ .Values.psm.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /?liveness
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /?readiness
-              port: http
-          startupProbe:
-            httpGet:
-              path: /?startup
-              port: http
-            failureThreshold: 30
-            successThreshold: 1
-            initialDelaySeconds: 1
-            periodSeconds: 10
+          # livenessProbe:
+          #   httpGet:
+          #     path: /?liveness
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /?readiness
+          #     port: http
+          # startupProbe:
+          #   httpGet:
+          #     path: /?startup
+          #     port: http
+          #   failureThreshold: 30
+          #   successThreshold: 1
+          #   initialDelaySeconds: 1
+          #   periodSeconds: 10
           resources:
 {{ toYaml .Values.psm.resources | indent 12 }}
     {{- with .Values.psm.nodeSelector }}
