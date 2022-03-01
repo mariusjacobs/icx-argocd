@@ -30,7 +30,7 @@ spec:
           command:
           - powershell.exe
           - -command
-          - "echo '<html><body><br/><br/><marquee><H1>Hello EKS!!!<H1><marquee></body><html>' > C:\\inetpub\\wwwroot\\default.html"
+          - "echo '<html><body><br/><br/><marquee><H1>Hello EKS!!!<H1><marquee></body><html>' > C:\\inetpub\\wwwroot\\default.html; C:\\ServiceMonitor.exe 'w3svc'"
           ports:
             - name: http
               containerPort: 80
