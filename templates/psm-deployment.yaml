@@ -32,9 +32,16 @@ spec:
               containerPort: 80
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /asm/all/servicelocation.svc
-              port: http
+            exec:
+              command:
+                - curl
+                - --fail
+                - -d
+                - "{ query: '{ global { dsns { name } cultures { items { name } } } }' }"
+                - -H 
+                - "Content-Type: application/json"
+                - -X POST
+                - http://localhost/asm/all/graphql/csr/api
             failureThreshold: 2
             initialDelaySeconds: 180
             timeoutSeconds: 10
