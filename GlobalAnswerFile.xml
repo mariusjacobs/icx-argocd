@@ -652,11 +652,10 @@ Token definition rules:
   <Group name="Redis" groupOrder="1200" description="Select State Server or Azure Redis Session State Provider for PSM">
     <Key name="RedisSetting" dataType="container" displayLevel="basic" isOptional="true" description="Redis Setting" helpText="" order="1">
       <Key name="UseRedis" dataType="boolean" displayLevel="basic" isOptional="true" description="Use Redis For Session State" helpText="" order="1">
-        <Value>false</Value>
+        <Value>true</Value>
       </Key>
       <Key name="RedisServerHostName" dataType="text" displayLevel="basic" isOptional="true" description="Host (use format [host]:[port])" helpText="" order="2">
-        <Value>
-        </Value>
+        <Value>icx-redis.keqrxz.0001.usw1.cache.amazonaws.com:6379</Value>
       </Key>
       <Key name="RedisServerPort" dataType="text" displayLevel="basic" isOptional="true" description="Port" helpText="" order="3">
         <Value>
