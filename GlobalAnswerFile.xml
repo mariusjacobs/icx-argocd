@@ -572,7 +572,7 @@ Token definition rules:
       <Value>HSNCBD-LT0341</Value>
     </Key>
     <Key name="ASMServerHostName" dataType="serverList(Environment/HostNames,single)" displayLevel="basic" isOptional="false" description="ASM host name" helpText="For a cluster installation select the ASM load balancer address" order="12">
-      <Value>HSNCBD-LT0362</Value>
+      <Value>a84a727c8d3fc425a92766dff721cbb8-712789972.us-west-1.elb.amazonaws.com</Value>
     </Key>
     <Key name="Use_SSL" dataType="boolean" displayLevel="basic" isOptional="true" description="Enable SSL" helpText="Enable SSL on PSM servers " order="13">
       <Value>false</Value>

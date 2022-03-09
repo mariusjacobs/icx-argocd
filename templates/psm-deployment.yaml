@@ -27,10 +27,14 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.psm.image.repository }}:{{ default .Chart.AppVersion .Values.psm.image.tag }}"
           imagePullPolicy: {{ .Values.psm.image.pullPolicy }}
+          volumeMounts:
+          - name: answer
+            mountPath: "C:/Answer"
+            readOnly: true
           command:
           - powershell.exe
-          - -command
-          - "echo '<html><body><br/><br/><marquee><H1>Hello EKS!!!<H1><marquee></body><html>' > C:\\inetpub\\wwwroot\\default.html; C:\\ServiceMonitor.exe 'w3svc'"
+          - -File
+          - "C:/windows/temp/Startup.ps1"
           ports:
             - name: http
               containerPort: 80
@@ -77,6 +81,10 @@ spec:
             periodSeconds: 10
           resources:
 {{ toYaml .Values.psm.resources | indent 12 }}
+      volumes:
+      - name: answer
+        secret: 
+          secretName: {{ .Release.Name }}-secret
     {{- with .Values.psm.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
