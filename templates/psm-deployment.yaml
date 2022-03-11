@@ -31,10 +31,10 @@ spec:
           - name: answer
             mountPath: "C:/Answer"
             readOnly: true
-          command:
-          - powershell.exe
-          - -File
-          - "C:/windows/temp/Startup.ps1"
+          # command:
+          # - powershell.exe
+          # - -File
+          # - "C:/windows/temp/Startup.ps1"
           ports:
             - name: http
               containerPort: 80

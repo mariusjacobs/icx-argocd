@@ -53,7 +53,7 @@ psm:
     # repository: gcr.io/heptio-images/ks-guestbook-demo
     # tag: 0.2
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-psm
-    tag: 1.1.7
+    tag: 1.1.8
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
