@@ -31,10 +31,10 @@ spec:
           - name: answer
             mountPath: "C:/Answer"
             readOnly: true
-          command:
-          - powershell.exe
-          - -File
-          - "C:/windows/temp/Startup.ps1"
+          # command:
+          # - powershell.exe
+          # - -File
+          # - "C:/windows/temp/Startup.ps1"
           ports:
             - name: http
               containerPort: 80
@@ -72,13 +72,13 @@ spec:
             periodSeconds: 5
           startupProbe:
             httpGet:
-              path: /asm/all/servicelocation.svc
+              path: /psm/csr/initialize.aspx
               port: http
             failureThreshold: 30
             successThreshold: 1
             initialDelaySeconds: 1
-            timeoutSeconds: 1
-            periodSeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 30
           resources:
 {{ toYaml .Values.psm.resources | indent 12 }}
       volumes:
