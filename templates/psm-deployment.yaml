@@ -70,10 +70,20 @@ spec:
             initialDelaySeconds: 1
             timeoutSeconds: 1
             periodSeconds: 5
+          # startupProbe:
+          #   httpGet:
+          #     path: /asm/all/servicelocation.svc
+          #     port: http
+          #   failureThreshold: 30
+          #   successThreshold: 1
+          #   initialDelaySeconds: 1
+          #   timeoutSeconds: 1
+          #   periodSeconds: 10
           startupProbe:
-            httpGet:
-              path: /asm/all/servicelocation.svc
-              port: http
+            exec:
+              command:
+                - type
+                - "c:\windows\temp\initialized.txt"
             failureThreshold: 30
             successThreshold: 1
             initialDelaySeconds: 1

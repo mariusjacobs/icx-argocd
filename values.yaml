@@ -50,10 +50,8 @@ asm:
 psm:
   replicaCount: 1
   image: 
-    # repository: gcr.io/heptio-images/ks-guestbook-demo
-    # tag: 0.2
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-psm
-    tag: 1.1.8
+    tag: 1.1.9
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
