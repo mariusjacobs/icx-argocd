@@ -51,7 +51,7 @@ psm:
   replicaCount: 1
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-psm
-    tag: 1.1.9
+    tag: 1.1.10
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer

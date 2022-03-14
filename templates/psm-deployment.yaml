@@ -82,8 +82,9 @@ spec:
           startupProbe:
             exec:
               command:
-                - type
-                - "c:\\windows\\temp\\initialized.txt"
+                - powershell.exe
+                - -File
+                - "c:\\windows\\temp\\StartupProbe.ps1"
             failureThreshold: 30
             successThreshold: 1
             initialDelaySeconds: 1
