@@ -118,7 +118,7 @@ bsm:
       replicaCount: 1
     - name: CriticalAction
       dsn: baseline
-      replicaCount: 1
+      replicaCount: 0
 
 ism:
   replicaCount: 1
