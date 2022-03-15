@@ -109,10 +109,10 @@ bsm:
   services:
     - name: Billing
       dsn: baseline
-      replicaCount: 2
+      replicaCount: 1
     - name: Prepaid
       dsn: baseline
-      replicaCount: 0
+      replicaCount: 1
 
 ism:
   replicaCount: 1
