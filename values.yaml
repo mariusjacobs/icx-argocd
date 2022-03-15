@@ -1,12 +1,9 @@
-# Default values for icx.
+# ICX deployment values.
 # This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
 asm:
   replicaCount: 1
   image: 
-    # repository: mcr.microsoft.com/windows/servercore/iis
-    # tag: 20220208-windowsservercore-ltsc2019
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-asm
     tag: 1.1.13
     pullPolicy: IfNotPresent
@@ -28,16 +25,6 @@ asm:
     #      - chart-example.local
 
   resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #  cpu: 100m
-    #  memory: 128Mi
-    # requests:
-    #  cpu: 100m
-    #  memory: 128Mi
 
   nodeSelector:
     kubernetes.io/os: windows
@@ -71,16 +58,6 @@ psm:
     #      - chart-example.local
 
   resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #  cpu: 100m
-    #  memory: 128Mi
-    # requests:
-    #  cpu: 100m
-    #  memory: 128Mi
 
   nodeSelector:
     kubernetes.io/os: windows
@@ -107,16 +84,60 @@ bsm:
   affinity: {}
 
   services:
+    # Enumerate all BSM  services to be started. 
+    # name: should be the ICX background service type.
+    - name: AccountStatusFromFt
+      dsn: baseline
+      replicaCount: 0
+    - name: AgreementSequence
+      dsn: baseline
+      replicaCount: 0
+    - name: Anonymization
+      dsn: baseline
+      replicaCount: 0
+    - name: ArrearsRun
+      dsn: baseline
+      replicaCount: 0
+    - name: B2BSettlementRun
+      dsn: baseline
+      replicaCount: 0
     - name: Billing
       dsn: baseline
       replicaCount: 1
+    - name: CriticalAction
+      dsn: baseline
+      replicaCount: 0
+    - name: Escalations
+      dsn: baseline
+      replicaCount: 0
+    - name: InstallmentFtCreation
+      dsn: baseline
+      replicaCount: 0
+    - name: InvoiceRun
+      dsn: baseline
+      replicaCount: 0
+    - name: Letters
+      dsn: baseline
+      replicaCount: 0
+    - name: PeriodizationRun
+      dsn: baseline
+      replicaCount: 0
     - name: Prepaid
       dsn: baseline
       replicaCount: 1
+    - name: Query
+      dsn: baseline
+      replicaCount: 0
+    - name: Rekey
+      dsn: baseline
+      replicaCount: 0
+    - name: ReleaseCallQueue
+      dsn: baseline
+      replicaCount: 0
     - name: ScheduleManager
       dsn: baseline
       replicaCount: 1
-    - name: CriticalAction
+    - name: Settlement
       dsn: baseline
       replicaCount: 0
 
