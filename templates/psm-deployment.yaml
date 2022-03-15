@@ -31,10 +31,6 @@ spec:
           - name: answer
             mountPath: "C:/Answer"
             readOnly: true
-          # command:
-          # - powershell.exe
-          # - -File
-          # - "C:/windows/temp/Startup.ps1"
           ports:
             - name: http
               containerPort: 80
@@ -70,15 +66,8 @@ spec:
             initialDelaySeconds: 1
             timeoutSeconds: 1
             periodSeconds: 5
-          # startupProbe:
-          #   httpGet:
-          #     path: /asm/all/servicelocation.svc
-          #     port: http
-          #   failureThreshold: 30
-          #   successThreshold: 1
-          #   initialDelaySeconds: 1
-          #   timeoutSeconds: 1
-          #   periodSeconds: 10
+          # NOTE: StartupProbe is not working for Windows containers with EKS 1.21. 
+          # See: https://github.com/kubernetes/website/issues/28203
           startupProbe:
             exec:
               command:

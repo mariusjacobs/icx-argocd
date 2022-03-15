@@ -8,7 +8,7 @@ asm:
     # repository: mcr.microsoft.com/windows/servercore/iis
     # tag: 20220208-windowsservercore-ltsc2019
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-asm
-    tag: 1.1.1
+    tag: 1.1.11
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
@@ -51,7 +51,7 @@ psm:
   replicaCount: 1
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-psm
-    tag: 1.1.10
+    tag: 1.1.11
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
