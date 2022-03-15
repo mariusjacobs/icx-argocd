@@ -1,38 +1,39 @@
+{{- range .Values.bsm.services }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "icx.fullname" . }}-bsm
+  name: {{ template "icx.fullname" $ }}-bsm-{{ .name }}
   labels:
-    app: {{ template "icx.name" . }}
-    module: bsm
-    chart: {{ template "icx.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: {{ template "icx.name" $ }}
+    module: bsm-{{ .name }}
+    chart: {{ template "icx.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
 spec:
-  replicas: {{ .Values.bsm.replicaCount }}
+  replicas: {{ .replicaCount }}
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: {{ template "icx.name" . }}
-      module: bsm
-      release: {{ .Release.Name }}
+      app: {{ template "icx.name" $ }}
+      module: bsm-{{ .name }}
+      release: {{ $.Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "icx.name" . }}
-        module: bsm
-        release: {{ .Release.Name }}
+        app: {{ template "icx.name" $ }}
+        module: bsm-{{ .name }}
+        release: {{ $.Release.Name }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.bsm.image.repository }}:{{ default .Chart.AppVersion .Values.bsm.image.tag }}"
-          imagePullPolicy: {{ .Values.bsm.image.pullPolicy }}
+        - name: {{ $.Chart.Name }}
+          image: "{{ $.Values.bsm.image.repository }}:{{ default $.Chart.AppVersion $.Values.bsm.image.tag }}"
+          imagePullPolicy: {{ $.Values.bsm.image.pullPolicy }}
           securityContext:
             windowsOptions:
               runAsUserName: "IBSADMIN"
           env:
             - name: BG_SERVICE
-              value: "Billing"
+              value: "{{ .name }}"
             - name: DSN
               value: "baseline"
           volumeMounts:
@@ -40,20 +41,22 @@ spec:
             mountPath: "C:/Answer"
             readOnly: true
           resources:
-{{ toYaml .Values.bsm.resources | indent 12 }}
+{{ toYaml $.Values.bsm.resources | indent 12 }}
       volumes:
       - name: answer
         secret: 
-          secretName: {{ .Release.Name }}-secret
-    {{- with .Values.bsm.nodeSelector }}
+          secretName: {{ $.Release.Name }}-secret
+    {{- with $.Values.bsm.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
     {{- end }}
-    {{- with .Values.bsm.affinity }}
+    {{- with $.Values.bsm.affinity }}
       affinity:
 {{ toYaml . | indent 8 }}
     {{- end }}
-    {{- with .Values.bsm.tolerations }}
+    {{- with $.Values.bsm.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+---
+{{- end }}    
