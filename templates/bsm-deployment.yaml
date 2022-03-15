@@ -1,55 +1,62 @@
+{{- range .Values.bsm.services }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "icx.fullname" . }}-bsm
+  name: {{ template "bsm.fullname" . }}
   labels:
-    app: {{ template "icx.name" . }}
-    module: bsm
-    chart: {{ template "icx.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: {{ template "icx.name" $ }}
+    module: {{ template "bsm.fullname" . }}
+    chart: {{ template "icx.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
 spec:
-  replicas: {{ .Values.bsm.replicaCount }}
+  replicas: {{ .replicaCount }}
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: {{ template "icx.name" . }}
-      module: bsm
-      release: {{ .Release.Name }}
+      app: {{ template "icx.name" $ }}
+      module: {{ template "bsm.fullname" . }}
+      release: {{ $.Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "icx.name" . }}
-        module: bsm
-        release: {{ .Release.Name }}
+        app: {{ template "icx.name" $ }}
+        module: {{ template "bsm.fullname" . }}
+        release: {{ $.Release.Name }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.bsm.image.repository }}:{{ default .Chart.AppVersion .Values.bsm.image.tag }}"
-          imagePullPolicy: {{ .Values.bsm.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+        - name: {{ $.Chart.Name }}
+          image: "{{ $.Values.bsm.image.repository }}:{{ default $.Chart.AppVersion $.Values.bsm.image.tag }}"
+          imagePullPolicy: {{ $.Values.bsm.image.pullPolicy }}
+          securityContext:
+            windowsOptions:
+              runAsUserName: "IBSADMIN"
+          env:
+            - name: BG_SERVICE
+              value: "{{ .name }}"
+            - name: DSN
+              value: "{{ .dsn }}"
+          volumeMounts:
+          - name: answer
+            mountPath: "C:/Answer"
+            readOnly: true
           resources:
-{{ toYaml .Values.bsm.resources | indent 12 }}
-    {{- with .Values.bsm.nodeSelector }}
+{{ toYaml $.Values.bsm.resources | indent 12 }}
+      volumes:
+      - name: answer
+        secret: 
+          secretName: {{ $.Release.Name }}-secret
+    {{- with $.Values.bsm.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
     {{- end }}
-    {{- with .Values.bsm.affinity }}
+    {{- with $.Values.bsm.affinity }}
       affinity:
 {{ toYaml . | indent 8 }}
     {{- end }}
-    {{- with .Values.bsm.tolerations }}
+    {{- with $.Values.bsm.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+---
+{{- end }}    

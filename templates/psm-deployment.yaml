@@ -27,10 +27,10 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.psm.image.repository }}:{{ default .Chart.AppVersion .Values.psm.image.tag }}"
           imagePullPolicy: {{ .Values.psm.image.pullPolicy }}
-          command:
-          - powershell.exe
-          - -command
-          - "echo '<html><body><br/><br/><marquee><H1>Hello EKS!!!<H1><marquee></body><html>' > C:\\inetpub\\wwwroot\\default.html; C:\\ServiceMonitor.exe 'w3svc'"
+          volumeMounts:
+          - name: answer
+            mountPath: "C:/Answer"
+            readOnly: true
           ports:
             - name: http
               containerPort: 80
@@ -66,10 +66,14 @@ spec:
             initialDelaySeconds: 1
             timeoutSeconds: 1
             periodSeconds: 5
+          # NOTE: StartupProbe is not working for Windows containers with EKS 1.21. 
+          # See: https://github.com/kubernetes/website/issues/28203
           startupProbe:
-            httpGet:
-              path: /asm/all/servicelocation.svc
-              port: http
+            exec:
+              command:
+                - powershell.exe
+                - -File
+                - "c:\\windows\\temp\\StartupProbe.ps1"
             failureThreshold: 30
             successThreshold: 1
             initialDelaySeconds: 1
@@ -77,6 +81,10 @@ spec:
             periodSeconds: 10
           resources:
 {{ toYaml .Values.psm.resources | indent 12 }}
+      volumes:
+      - name: answer
+        secret: 
+          secretName: {{ .Release.Name }}-secret
     {{- with .Values.psm.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
