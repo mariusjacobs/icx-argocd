@@ -27,20 +27,21 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.bsm.image.repository }}:{{ default .Chart.AppVersion .Values.bsm.image.tag }}"
           imagePullPolicy: {{ .Values.bsm.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+          env:
+            - name: BG_SERVICE
+              value: "Billing"
+            - name: DSN
+              value: "baseline"
+          volumeMounts:
+          - name: answer
+            mountPath: "C:/Answer"
+            readOnly: true
           resources:
 {{ toYaml .Values.bsm.resources | indent 12 }}
+      volumes:
+      - name: answer
+        secret: 
+          secretName: {{ .Release.Name }}-secret
     {{- with .Values.bsm.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
