@@ -109,16 +109,16 @@ bsm:
   services:
     - name: Billing
       dsn: baseline
-      replicaCount: 2
+      replicaCount: 1
     - name: Prepaid
       dsn: baseline
-      replicaCount: 2
+      replicaCount: 1
     - name: ScheduleManager
       dsn: baseline
-      replicaCount: 2
+      replicaCount: 1
     - name: CriticalAction
       dsn: baseline
-      replicaCount: 2
+      replicaCount: 1
 
 ism:
   replicaCount: 1
