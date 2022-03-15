@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "icx.fullname" $ }}-bsm-{{ .name | lower}}
+  name: {{ template "bsm.fullname" . }}
   labels:
     app: {{ template "icx.name" $ }}
-    module: bsm-{{ .name | lower }}
+    module: {{ template "bsm.fullname" . }}
     chart: {{ template "icx.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
@@ -15,13 +15,13 @@ spec:
   selector:
     matchLabels:
       app: {{ template "icx.name" $ }}
-      module: bsm-{{ .name | lower }}
+      module: {{ template "bsm.fullname" . }}
       release: {{ $.Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "icx.name" $ }}
-        module: bsm-{{ .name | lower }}
+        module: {{ template "bsm.fullname" . }}
         release: {{ $.Release.Name }}
     spec:
       containers:
@@ -35,7 +35,7 @@ spec:
             - name: BG_SERVICE
               value: "{{ .name }}"
             - name: DSN
-              value: "baseline"
+              value: "{{ .dsn }}"
           volumeMounts:
           - name: answer
             mountPath: "C:/Answer"
