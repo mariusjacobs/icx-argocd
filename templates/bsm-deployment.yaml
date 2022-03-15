@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "icx.fullname" $ }}-bsm-{{ .name }}
+  name: {{ template "icx.fullname" $ }}-bsm-{{ .name | lower}}
   labels:
     app: {{ template "icx.name" $ }}
-    module: bsm-{{ .name }}
+    module: bsm-{{ .name | lower }}
     chart: {{ template "icx.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}
@@ -15,13 +15,13 @@ spec:
   selector:
     matchLabels:
       app: {{ template "icx.name" $ }}
-      module: bsm-{{ .name }}
+      module: bsm-{{ .name | lower }}
       release: {{ $.Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "icx.name" $ }}
-        module: bsm-{{ .name }}
+        module: bsm-{{ .name | lower }}
         release: {{ $.Release.Name }}
     spec:
       containers:
