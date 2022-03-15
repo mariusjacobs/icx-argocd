@@ -94,7 +94,7 @@ bsm:
   replicaCount: 1
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-bsm
-    tag: 1.1.14
+    tag: 1.1.15
     pullPolicy: IfNotPresent
 
   resources: {}
