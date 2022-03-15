@@ -22,14 +22,14 @@ spec:
         app: {{ template "icx.name" . }}
         module: bsm
         release: {{ .Release.Name }}
-    securityContext:
-      windowsOptions:
-        runAsUserName: "IBSADMIN"
     spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.bsm.image.repository }}:{{ default .Chart.AppVersion .Values.bsm.image.tag }}"
           imagePullPolicy: {{ .Values.bsm.image.pullPolicy }}
+          securityContext:
+            windowsOptions:
+              runAsUserName: "IBSADMIN"
           env:
             - name: BG_SERVICE
               value: "Billing"
