@@ -63,7 +63,7 @@ spec:
                 - http://localhost/asm/all/graphql/csr/api
             failureThreshold: 30
             successThreshold: 3
-            initialDelaySeconds: 180
+            initialDelaySeconds: 1
             timeoutSeconds: 1
             periodSeconds: 5
           # NOTE: StartupProbe is not working for Windows containers with EKS 1.21. 
