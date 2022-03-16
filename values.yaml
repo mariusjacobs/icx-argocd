@@ -124,7 +124,7 @@ bsm:
       replicaCount: 0
     - name: Prepaid
       dsn: baseline
-      replicaCount: 0
+      replicaCount: 1
     - name: Query
       dsn: baseline
       replicaCount: 0
