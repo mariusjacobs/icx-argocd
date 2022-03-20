@@ -5,7 +5,7 @@ asm:
   replicaCount: 1
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-asm
-    tag: 1.1.13
+    tag: 2.0.0
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
@@ -38,7 +38,7 @@ psm:
   replicaCount: 1
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-psm
-    tag: 1.1.13
+    tag: 2.0.0
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
@@ -70,7 +70,7 @@ psm:
 bsm:
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-bsm
-    tag: 1.1.15
+    tag: 2.0.0
     pullPolicy: IfNotPresent
 
   resources: {}
