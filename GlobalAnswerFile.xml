@@ -79,7 +79,7 @@ Token definition rules:
     </Key>
     <Key name="PostgreSQL" dataType="postgresDbCredentials" displayLevel="basic" isOptional="false" description="Database Credentials" helpText="" order="6">
       <Key name="Host" dataType="text" displayLevel="basic" isOptional="false" description="Host" helpText="" order="1">
-        <Value>education.cmcqimtbvxhm.us-west-1.rds.amazonaws.com</Value>
+        <Value>kube-demo1-pg.cmcqimtbvxhm.us-west-1.rds.amazonaws.com</Value>
       </Key>
       <Key name="Database" dataType="text" displayLevel="basic" isOptional="false" description="Database" helpText="" order="2">
         <Value>postgres</Value>
@@ -655,7 +655,7 @@ Token definition rules:
         <Value>true</Value>
       </Key>
       <Key name="RedisServerHostName" dataType="text" displayLevel="basic" isOptional="true" description="Host (use format [host]:[port])" helpText="" order="2">
-        <Value>icx-redis.keqrxz.0001.usw1.cache.amazonaws.com:6379</Value>
+        <Value>kube-demo1-elasticache-redis.keqrxz.0001.usw1.cache.amazonaws.com:6379</Value>
       </Key>
       <Key name="RedisServerPort" dataType="text" displayLevel="basic" isOptional="true" description="Port" helpText="" order="3">
         <Value>
