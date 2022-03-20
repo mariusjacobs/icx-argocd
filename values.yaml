@@ -1,6 +1,11 @@
 # ICX deployment values.
 # This is a YAML-formatted file.
 
+connectionString:
+  secretId: kube-demo1-connectionstring
+  secretVersion: 12F5C36E-45EC-4CB4-8CC6-043E304B296A
+
+
 asm:
   replicaCount: 1
   image: 
