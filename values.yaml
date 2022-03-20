@@ -103,7 +103,7 @@ bsm:
       replicaCount: 0
     - name: Billing
       dsn: baseline
-      replicaCount: 0
+      replicaCount: 1
     - name: CriticalAction
       dsn: baseline
       replicaCount: 0
