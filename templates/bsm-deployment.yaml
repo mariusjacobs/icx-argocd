@@ -36,6 +36,11 @@ spec:
               value: "{{ .name }}"
             - name: DSN
               value: "{{ .dsn }}"
+            - name: ICX_CONNECTIONSTRING
+              valueFrom:
+                secretKeyRef:
+                  name: connectionstring
+                  key: data
           volumeMounts:
           - name: answer
             mountPath: "C:/Answer"

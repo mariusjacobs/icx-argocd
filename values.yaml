@@ -75,7 +75,7 @@ psm:
 bsm:
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-bsm
-    tag: 2.0.1
+    tag: 2.0.2
     pullPolicy: IfNotPresent
 
   resources: {}
