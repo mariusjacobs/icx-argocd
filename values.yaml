@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 
 connectionString:
-  secretId: kube-demo1-connectionstring
+  secretId: icx-dev-connectionstring
   secretVersion: 12F5C36E-45EC-4CB4-8CC6-043E304B296A
 
 
