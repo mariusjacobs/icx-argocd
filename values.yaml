@@ -10,7 +10,7 @@ asm:
   replicaCount: 1
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-asm
-    tag: 2.0.0
+    tag: 2.0.1
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
