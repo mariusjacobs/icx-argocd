@@ -79,7 +79,7 @@ Token definition rules:
     </Key>
     <Key name="PostgreSQL" dataType="postgresDbCredentials" displayLevel="basic" isOptional="false" description="Database Credentials" helpText="" order="6">
       <Key name="Host" dataType="text" displayLevel="basic" isOptional="false" description="Host" helpText="" order="1">
-        <Value>kube-demo1-pg.cmcqimtbvxhm.us-west-1.rds.amazonaws.com</Value>
+        <Value>icx-dev-pg.cmcqimtbvxhm.us-west-1.rds.amazonaws.com</Value>
       </Key>
       <Key name="Database" dataType="text" displayLevel="basic" isOptional="false" description="Database" helpText="" order="2">
         <Value>postgres</Value>
@@ -686,7 +686,7 @@ Token definition rules:
     </Key>
     <Key name="KafkaInformation" dataType="kafkaCredentials" displayLevel="basic" isOptional="false" description="Kafka setting" helpText="" order="2">
       <Key name="KafkaBootstrapServers" dataType="text" displayLevel="basic" isOptional="false" description="Kafka Cluster Address (use format [host]:[port])" helpText="Kafka Bootstrap Servers (use format [host]:[port], e.g. localhost:29092)" order="1">
-        <Value>b-2.kube-demo1-msk.xrabyk.c2.kafka.us-west-1.amazonaws.com:9092,b-1.kube-demo1-msk.xrabyk.c2.kafka.us-west-1.amazonaws.com:9092</Value>
+        <Value>b-2.icx-dev-msk.lq99yx.c2.kafka.us-west-1.amazonaws.com:9092,b-1.icx-dev-msk.lq99yx.c2.kafka.us-west-1.amazonaws.com:9092</Value>
       </Key>
       <Key name="Username" dataType="text" displayLevel="basic" isOptional="true" description="Username" helpText="" order="2">
         <Value>
