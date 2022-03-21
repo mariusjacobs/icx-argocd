@@ -79,7 +79,7 @@ Token definition rules:
     </Key>
     <Key name="PostgreSQL" dataType="postgresDbCredentials" displayLevel="basic" isOptional="false" description="Database Credentials" helpText="" order="6">
       <Key name="Host" dataType="text" displayLevel="basic" isOptional="false" description="Host" helpText="" order="1">
-        <Value>icx-dev-pg.cmcqimtbvxhm.us-west-1.rds.amazonaws.com</Value>
+        <Value>localhost</Value>
       </Key>
       <Key name="Database" dataType="text" displayLevel="basic" isOptional="false" description="Database" helpText="" order="2">
         <Value>postgres</Value>
