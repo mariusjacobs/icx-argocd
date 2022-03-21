@@ -97,7 +97,7 @@ Token definition rules:
       <Key name="DataAccessType" dataType="text" displayLevel="hidden" isOptional="true" description="FQTN of the data access object." helpText="" order="6">
         <Value>Entriq.DataAccess.Npgsql.NpgsqlDataAccessFactory, Entriq.DataAccess.Npgsql, Version=1.5.0.0, Culture=neutral, PublicKeyToken=null</Value>
       </Key>
-    </Key>
+    </Key> 
   </Group>
   <Group name="AdminTools" groupOrder="300">
     <Key name="Servers" dataType="serverList(Environment/HostNames,multiple)" displayLevel="basic" isOptional="false" description="AdminTool servers" helpText="On which servers should AdminTools be installed?" order="1">
