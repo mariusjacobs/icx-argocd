@@ -1,5 +1,5 @@
 asm:
-  replicaCount: 2
+  replicaCount: 0
   service: 
     type: LoadBalancer
     port: 80
@@ -31,7 +31,7 @@ bsm:
       replicaCount: 0
     - name: Billing
       dsn: baseline
-      replicaCount: 1
+      replicaCount: 0
     - name: CriticalAction
       dsn: baseline
       replicaCount: 0
@@ -64,7 +64,7 @@ bsm:
       replicaCount: 0
     - name: ScheduleManager
       dsn: baseline
-      replicaCount: 2
+      replicaCount: 0
     - name: Settlement
       dsn: baseline
       replicaCount: 0
