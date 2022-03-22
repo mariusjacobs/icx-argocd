@@ -11,7 +11,63 @@ psm:
     port: 80
 
 bsm:
-  replicaCount: 2
+  services:
+    # Enumerate all BSM  services to be started. 
+    # name: should be the ICX background service type.
+    - name: AccountStatusFromFt
+      dsn: baseline
+      replicaCount: 0
+    - name: AgreementSequence
+      dsn: baseline
+      replicaCount: 0
+    - name: Anonymization
+      dsn: baseline
+      replicaCount: 0
+    - name: ArrearsRun
+      dsn: baseline
+      replicaCount: 0
+    - name: B2BSettlementRun
+      dsn: baseline
+      replicaCount: 0
+    - name: Billing
+      dsn: baseline
+      replicaCount: 1
+    - name: CriticalAction
+      dsn: baseline
+      replicaCount: 0
+    - name: Escalations
+      dsn: baseline
+      replicaCount: 0
+    - name: InstallmentFtCreation
+      dsn: baseline
+      replicaCount: 0
+    - name: InvoiceRun
+      dsn: baseline
+      replicaCount: 0
+    - name: Letters
+      dsn: baseline
+      replicaCount: 0
+    - name: PeriodizationRun
+      dsn: baseline
+      replicaCount: 0
+    - name: Prepaid
+      dsn: baseline
+      replicaCount: 0
+    - name: Query
+      dsn: baseline
+      replicaCount: 0
+    - name: Rekey
+      dsn: baseline
+      replicaCount: 0
+    - name: ReleaseCallQueue
+      dsn: baseline
+      replicaCount: 0
+    - name: ScheduleManager
+      dsn: baseline
+      replicaCount: 2
+    - name: Settlement
+      dsn: baseline
+      replicaCount: 0
 
 ism:
   replicaCount: 2

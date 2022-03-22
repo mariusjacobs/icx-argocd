@@ -27,31 +27,35 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.asm.image.repository }}:{{ default .Chart.AppVersion .Values.asm.image.tag }}"
           imagePullPolicy: {{ .Values.asm.image.pullPolicy }}
-          # command:
-          # - powershell.exe
-          # - -command
-          # - "Add-WindowsFeature Web-Server; Invoke-WebRequest -UseBasicParsing -Uri 'https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.6/ServiceMonitor.exe' -OutFile 'C:\\ServiceMonitor.exe'; echo '<html><body><br/><br/><marquee><H1>Hello EKS!!!<H1><marquee></body><html>' > C:\\inetpub\\wwwroot\\default.html; C:\\ServiceMonitor.exe 'w3svc'; "
+          volumeMounts:
+          - name: answer
+            mountPath: "C:/Answer"
+            readOnly: true
+          env:
+          - name: ICX_CONNECTIONSTRING
+            valueFrom:
+              secretKeyRef:
+                name: connectionstring
+                key: data
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /asm/all/servicelocation.svc
-              port: http
+            exec:
+              command:
+                - curl
+                - --fail
+                - -d
+                - "{ query: '{ global { dsns { name } cultures { items { name } } } }' }"
+                - -H 
+                - "Content-Type: application/json"
+                - -X POST
+                - http://localhost/asm/all/graphql/csr/api
             failureThreshold: 2
             initialDelaySeconds: 180
             timeoutSeconds: 10
-            periodSeconds: 10
-          # readinessProbe:
-          #   httpGet:
-          #     path: /asm/all/servicelocation.svc
-          #     port: http
-          #   failureThreshold: 30
-          #   successThreshold: 3
-          #   initialDelaySeconds: 5
-          #   timeoutSeconds: 1
-          #   periodSeconds: 5
+            periodSeconds: 30
           readinessProbe:
             exec:
               command:
@@ -64,36 +68,29 @@ spec:
                 - -X POST
                 - http://localhost/asm/all/graphql/csr/api
             failureThreshold: 30
-            successThreshold: 3
+            successThreshold: 2
             initialDelaySeconds: 1
             timeoutSeconds: 1
-            periodSeconds: 5
+            periodSeconds: 15
+          # NOTE: StartupProbe is not working for Windows containers with EKS 1.21. 
+          # See: https://github.com/kubernetes/website/issues/28203
           startupProbe:
-            httpGet:
-              path: /asm/all/servicelocation.svc
-              port: http
+            exec:
+              command:
+                - powershell.exe
+                - -File
+                - "c:\\windows\\temp\\StartupProbe.ps1"
             failureThreshold: 30
             successThreshold: 1
             initialDelaySeconds: 1
             timeoutSeconds: 1
             periodSeconds: 10
-          # startupProbe:
-          #   exec:
-          #     command:
-          #       - curl
-          #       - --fail
-          #       - -d
-          #       - "{ query: '{ global { dsns { name } cultures { items { name } } } }' }"
-          #       - -H 
-          #       - "Content-Type: application/json"
-          #       - -X POST
-          #       - http://localhost/asm/all/graphql/csr/api
-          #   failureThreshold: 30
-          #   initialDelaySeconds: 1
-          #   timeoutSeconds: 1
-          #   periodSeconds: 5
           resources:
 {{ toYaml .Values.asm.resources | indent 12 }}
+      volumes:
+      - name: answer
+        secret: 
+          secretName: {{ .Release.Name }}-secret
     {{- with .Values.asm.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}

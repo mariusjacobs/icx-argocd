@@ -32,26 +32,9 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
-Generic icx service.
+Create a default fully qualified bsm name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
-{{- define "icx.service" -}}
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ template "icx.fullname" . }}-asm
-  labels:
-    app: {{ template "icx.name" . }}
-    chart: {{ template "icx.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  type: {{ .Values.service.asm.type }}
-  ports:
-    - port: {{ .Values.service.asm.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    app: {{ template "icx.name" . }}
-    release: {{ .Release.Name }}
+{{- define "bsm.fullname" -}}
+{{- printf "bsm-%s-%s" .name .dsn | lower | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
