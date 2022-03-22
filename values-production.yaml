@@ -64,7 +64,7 @@ bsm:
       replicaCount: 0
     - name: ScheduleManager
       dsn: baseline
-      replicaCount: 1
+      replicaCount: 2
     - name: Settlement
       dsn: baseline
       replicaCount: 0
