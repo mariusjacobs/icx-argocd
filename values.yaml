@@ -2,15 +2,15 @@
 # This is a YAML-formatted file.
 
 connectionString:
-  secretId: kube-demo1-connectionstring
-  secretVersion: 12F5C36E-45EC-4CB4-8CC6-043E304B296A
+  secretId: icx-dev-connectionstring
+  secretVersion: 4A884637-9720-4CFF-BF84-C5C9BF135F24
 
 
 asm:
   replicaCount: 1
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-asm
-    tag: 2.0.1
+    # tag: 2.0.4
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
@@ -43,7 +43,7 @@ psm:
   replicaCount: 1
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-psm
-    tag: 2.0.1
+    # tag: 2.0.4
     pullPolicy: IfNotPresent
   service: 
     type: LoadBalancer
@@ -75,7 +75,7 @@ psm:
 bsm:
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-bsm
-    tag: 2.0.1
+    tag: 2.0.6
     pullPolicy: IfNotPresent
 
   resources: {}
@@ -150,7 +150,7 @@ ism:
   replicaCount: 1
   image: 
     repository: gcr.io/heptio-images/ks-guestbook-demo
-    # tag: 0.2
+    tag: 0.2
     pullPolicy: IfNotPresent
 
   resources: {}

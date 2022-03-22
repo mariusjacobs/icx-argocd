@@ -79,7 +79,7 @@ Token definition rules:
     </Key>
     <Key name="PostgreSQL" dataType="postgresDbCredentials" displayLevel="basic" isOptional="false" description="Database Credentials" helpText="" order="6">
       <Key name="Host" dataType="text" displayLevel="basic" isOptional="false" description="Host" helpText="" order="1">
-        <Value>kube-demo1-pg.cmcqimtbvxhm.us-west-1.rds.amazonaws.com</Value>
+        <Value>icx-dev-pg.cmcqimtbvxhm.us-west-1.rds.amazonaws.com</Value>
       </Key>
       <Key name="Database" dataType="text" displayLevel="basic" isOptional="false" description="Database" helpText="" order="2">
         <Value>postgres</Value>
@@ -97,7 +97,7 @@ Token definition rules:
       <Key name="DataAccessType" dataType="text" displayLevel="hidden" isOptional="true" description="FQTN of the data access object." helpText="" order="6">
         <Value>Entriq.DataAccess.Npgsql.NpgsqlDataAccessFactory, Entriq.DataAccess.Npgsql, Version=1.5.0.0, Culture=neutral, PublicKeyToken=null</Value>
       </Key>
-    </Key>
+    </Key> 
   </Group>
   <Group name="AdminTools" groupOrder="300">
     <Key name="Servers" dataType="serverList(Environment/HostNames,multiple)" displayLevel="basic" isOptional="false" description="AdminTool servers" helpText="On which servers should AdminTools be installed?" order="1">
@@ -655,7 +655,7 @@ Token definition rules:
         <Value>true</Value>
       </Key>
       <Key name="RedisServerHostName" dataType="text" displayLevel="basic" isOptional="true" description="Host (use format [host]:[port])" helpText="" order="2">
-        <Value>kube-demo1-elasticache-redis.keqrxz.0001.usw1.cache.amazonaws.com:6379</Value>
+        <Value>icx-dev-elasticache-redis.keqrxz.0001.usw1.cache.amazonaws.com:6379</Value>
       </Key>
       <Key name="RedisServerPort" dataType="text" displayLevel="basic" isOptional="true" description="Port" helpText="" order="3">
         <Value>
@@ -686,7 +686,7 @@ Token definition rules:
     </Key>
     <Key name="KafkaInformation" dataType="kafkaCredentials" displayLevel="basic" isOptional="false" description="Kafka setting" helpText="" order="2">
       <Key name="KafkaBootstrapServers" dataType="text" displayLevel="basic" isOptional="false" description="Kafka Cluster Address (use format [host]:[port])" helpText="Kafka Bootstrap Servers (use format [host]:[port], e.g. localhost:29092)" order="1">
-        <Value>b-2.kube-demo1-msk.xrabyk.c2.kafka.us-west-1.amazonaws.com:9092,b-1.kube-demo1-msk.xrabyk.c2.kafka.us-west-1.amazonaws.com:9092</Value>
+        <Value>b-2.icx-dev-msk.lq99yx.c2.kafka.us-west-1.amazonaws.com:9092,b-1.icx-dev-msk.lq99yx.c2.kafka.us-west-1.amazonaws.com:9092</Value>
       </Key>
       <Key name="Username" dataType="text" displayLevel="basic" isOptional="true" description="Username" helpText="" order="2">
         <Value>
