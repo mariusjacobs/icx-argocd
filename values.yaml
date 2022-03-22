@@ -1,9 +1,10 @@
 # ICX deployment values.
 # This is a YAML-formatted file.
 
-connectionString:
-  secretId: icx-dev-connectionstring
-  secretVersion: 4A884637-9720-4CFF-BF84-C5C9BF135F24
+secrets:
+  connectionString:
+    secretId: icx-dev-connectionstring
+    secretVersion: 4A884637-9720-4CFF-BF84-C5C9BF135F24
 
 
 asm:
@@ -75,7 +76,7 @@ psm:
 bsm:
   image: 
     repository: 382076429670.dkr.ecr.us-west-1.amazonaws.com/icx-bsm
-    tag: 2.0.6
+    # tag: 2.0.6
     pullPolicy: IfNotPresent
 
   resources: {}
